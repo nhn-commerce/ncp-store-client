@@ -1,0 +1,172 @@
+.login_area {
+  margin-top: 0.75rem;
+  padding: 0 1.5rem;
+  -webkit-box-shadow: 0 1px 1px rgb(221,221,221);
+  box-shadow: 0 1px 1px rgb(221,221,221);
+  margin-bottom: 0.75rem;
+  background: rgb(255,255,255);
+}
+
+.login_area.hei_100 {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  top: 5rem;
+  width: 100%;
+  box-sizing: border-box;
+  margin-bottom: 0;
+}
+
+.login_box {
+  padding: 3.5rem 0 4rem;
+}
+
+.login_box + .login_box {
+  border-top: 1px solid rgb(221,221,221);
+}
+
+.login_box .txt {
+  font-size: 1.2rem;
+  line-height: 1.9rem;
+  text-align: center;
+}
+
+.login_box .payco {
+  display: block;
+  margin: 0.5rem 0 1rem;
+  height: 2.5rem;
+  text-indent: -9999px;
+  background: url("../assets/images/sub/ico_payco.png") no-repeat 50% 0;
+  background-size: 11.15rem;
+}
+
+.login_box .btn {
+  display: block;
+  margin-top: 2.2rem;
+  height: 4.5rem;
+  line-height: 4.5rem;
+  font-weight: 500;
+  font-size: 1.4rem;
+  text-align: center;
+}
+
+.login_box .btn_login {
+  background: var( --theme-color );
+  color: rgb(255,255,255);
+}
+
+.login_box .btn_join {
+  border: 1px solid var( --theme-color );
+  line-height: 4.3rem;
+  color: var( --theme-color );
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.mbr_link {
+  margin-top: -0.75rem;
+  padding-bottom: 1.25rem;
+  text-align: center;
+  font-size: 0;
+}
+
+.mbr_link > a {
+  display: inline-block;
+  font-size: 1.2rem;
+  font-weight: 300;
+  line-height: 2.5rem;
+  color: rgb(135,135,135);
+}
+
+.mbr_link > a:not(:first-child) {
+  position: relative;
+}
+
+.mbr_link > a:not(:first-child):before {
+  content: 'I';
+  display: inline-block;
+  margin: 0 1.3rem;
+  color: rgb(221,221,221);
+}
+
+.mbr_lst_txt {
+  font-size: 1.2rem;
+  font-weight: 300;
+  line-height: 2rem;
+  color: rgb(135,135,135);
+}
+
+.mbr_lst_txt > p {
+  position: relative;
+  padding-left: 0.7rem;
+}
+
+.mbr_lst_txt > p:before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  content: '-';
+}
+
+.no_mbr_order_sch .login_box {
+  padding: 4rem 0;
+}
+
+.no_mbr_order_sch dl + dl {
+  margin-top: 1rem;
+}
+
+.no_mbr_order_sch dt {
+  float: left;
+  width: 9.4rem;
+  font-size: 1.3rem;
+  font-weight: 400;
+  line-height: 4rem;
+  text-align: left;
+}
+
+.no_mbr_order_sch dd {
+  margin-left: 9.4rem;
+  min-height: 4rem;
+  line-height: 4rem;
+}
+
+.no_mbr_order_sch .login_inp {
+  width: 100%;
+  padding: 0 0.5rem;
+  height: 4rem;
+  line-height: 4rem;
+  border: 1px solid rgb(221,221,221);
+  font-size: 1.3rem;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  background: transparent;
+}
+
+.no_mbr_order_sch .radio_box {
+  margin-bottom: -1rem;
+}
+
+.no_mbr_order_sch .radio_box input[type="radio"] {
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  vertical-align: middle;
+}
+
+.no_mbr_order_sch .radio_box label {
+  display: inline-block;
+  margin-left: 0.5rem;
+  font-size: 1.2rem;
+  letter-spacing: -0.01rem;
+  vertical-align: middle;
+}
+
+.no_mbr_order_sch .radio_box span + span {
+  margin-left: 2.3rem;
+}
+
+.no_mbr_order_sch .mbr_lst_txt {
+  padding-bottom: 1.5rem;
+}

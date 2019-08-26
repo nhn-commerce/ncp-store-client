@@ -1,0 +1,381 @@
+.qna_list {
+  padding: 0 1.5rem;
+}
+
+.qna_list > li + li {
+  border-top: 1px solid rgb(221,221,221);
+}
+
+.qna_card {
+  padding: 2rem 0 1.6rem;
+}
+
+.qna_card dt {
+  float: left;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  line-height: 3rem;
+  font-family: "Helvetica-Bold", Arial, sans-serif;
+  font-size: 1.6rem;
+  text-align: center;
+  color: rgb(255,255,255);
+}
+
+.qc_q {
+  min-height: 3rem;
+}
+
+.qc_q dt {
+  background-color: rgb(200,200,200);
+}
+
+.qc_q_top {
+  padding-left: 4rem;
+  height: 3rem;
+  line-height: 3rem;
+}
+
+.qc_q_top:after {
+  display: block;
+  content: '';
+  clear: both;
+}
+
+.qc_q_top .type {
+  float: left;
+  font-size: 1.3rem;
+  font-weight: 500;
+  color: rgb(70,71,71);
+}
+
+.secret .qc_q_top .type {
+  padding-right: 2.2rem;
+  background: url("../assets/images/sub/ico_secret_cp.png") no-repeat 100% 0.7rem;
+  background-size: 1.15rem;
+}
+
+.qc_q_top .info {
+  float: right;
+  font-size: 0;
+  font-weight: 300;
+}
+
+.qc_q_top .info span {
+  display: inline-block;
+  font-size: 1.2rem;
+}
+
+.pdt_qna .qc_q_top .info .date:before {
+  margin: 0 0.4rem;
+  content: 'I';
+}
+
+.qc_q_txt {
+  clear: both;
+  margin-top: 1rem;
+}
+
+.qc_q_txt .title {
+  display: block;
+  margin-bottom: 0.75rem;
+  font-weight: 500;
+  font-size: 1.3rem;
+  line-height: 2rem;
+}
+
+.qc_q_txt .txt {
+  font-weight: 300;
+  font-size: 1.3rem;
+  line-height: 2rem;
+  word-wrap: break-word;
+}
+
+.qc_q_txt pre {
+  white-space: pre-wrap;
+  word-break: break-all;
+  font-family: "Noto Sans KR", Dotum, sans-serif;
+}
+
+.pdt_qna .qc_q_txt {
+  padding-left: 4rem;
+  margin-top: -0.7rem;
+}
+
+.qc_q_modify {
+  display: none;
+  margin-top: 0.2rem;
+}
+
+.qc_q_modify textarea {
+  padding: 1rem 1.5rem;
+  width: 100%;
+  height: 15rem;
+  font-size: 1.3rem;
+  line-height: 2rem;
+  border: 1px solid rgb(221,221,221);
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.pdt_qna .qc_q_modify {
+  padding-left: 4rem;
+}
+
+.pdt_qna .qc_q_modify textarea {
+  height: 11.5rem;
+}
+
+.qc_q.is_modify .qc_q_txt {
+  display: none;
+}
+
+.qc_q.is_modify .qc_q_modify {
+  display: block;
+}
+
+.qc_q .btn {
+  margin-top: 1rem;
+  margin-left: -0.5rem;
+  font-size: 0;
+}
+
+.qc_q .btn > a {
+  display: inline-block;
+  width: 7.5rem;
+  height: 3rem;
+  margin-left: 0.5rem;
+  font-size: 1.3rem;
+  line-height: 3rem;
+  text-align: center;
+}
+
+.qc_q .btn > a.btn_style3 {
+  line-height: 2.8rem;
+}
+
+.qc_a {
+  margin-top: 1rem;
+  min-height: 3rem;
+}
+
+.pdt_qna .qc_a {
+  margin-left: 2.7rem;
+}
+
+.qc_a dt {
+  position: relative;
+  background-color: var( --theme-color );
+  margin-left: 1.3rem;
+}
+
+.qc_a dt:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -1.3rem;
+  width: 1.3rem;
+  height: 100%;
+  background: url("../assets/images/sub/bg_qna_a.png") no-repeat 0 50%;
+  background-size: 0.75rem;
+}
+
+.qc_a_top {
+  padding-left: 5.3rem;
+  height: 3rem;
+  line-height: 3rem;
+}
+
+.qc_a_top:after {
+  display: block;
+  content: '';
+  clear: both;
+}
+
+.qc_a_top .type {
+  float: left;
+  font-size: 1.3rem;
+  font-weight: 500;
+  color: var( --theme-color );
+}
+
+.qc_a_top .info {
+  float: right;
+  font-size: 0;
+  font-weight: 300;
+}
+
+.qc_a_top .info span {
+  display: inline-block;
+  font-size: 1.2rem;
+}
+
+.qc_a_top .info span.notice {
+  color: var( --theme-color );
+  font-size: 1.1rem;
+}
+
+.qc_a_txt {
+  clear: both;
+  padding-left: 1.3rem;
+  font-weight: 300;
+  font-size: 1.3rem;
+  line-height: 2rem;
+}
+
+.qc_a_txt pre {
+  white-space: pre-wrap;
+  word-break: break-all;
+  font-family: "Noto Sans KR", Dotum, sans-serif;
+}
+
+.pdt_qna .qc_a_txt {
+  clear: none;
+  padding-top: 0.5rem;
+}
+
+.qna_write {
+  padding: 2.5rem 1.5rem 2rem;
+}
+
+.qna_write .check_box {
+  margin-top: 0.5rem;
+}
+
+.qw_select dt {
+  font-size: 1.3rem;
+  line-height: 1.8rem;
+}
+
+.qw_select dd {
+  margin-top: 0.75rem;
+}
+
+.qw_select .select_box {
+  position: relative;
+  z-index: 77;
+}
+
+.qw_select .select_box a {
+  display: block;
+  font-size: 1.2rem;
+  line-height: 4rem;
+  padding-left: 1.5rem;
+}
+
+.qw_select .select_box > a {
+  border: 1px solid rgb(221,221,221);
+  border-bottom-color: var( --theme-color );
+}
+
+.qw_select .select_box > a {
+  display: block;
+  position: relative;
+}
+
+.qw_select .select_box > a:before, .qw_select .select_box > a:after {
+  position: absolute;
+  top: 50%;
+  content: '';
+  width: 0.70711rem;
+  height: 0.1rem;
+  background-color: var( --theme-color );
+  -webkit-transition: all;
+  transition: all;
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  border-radius: 0;
+}
+
+.qw_select .select_box > a:before {
+  right: 1.95rem;
+  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+.qw_select .select_box > a:after {
+  right: 1.5rem;
+  -webkit-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+}
+
+.qw_select .select_box > ul {
+  display: none;
+  position: absolute;
+  top: 4rem;
+  left: 0;
+  width: 100%;
+  border: 1px solid rgb(221,221,221);
+  background: rgb(255,255,255);
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.qw_select .select_box > ul li + li {
+  border-top: 1px solid rgb(221,221,221);
+}
+
+.qw_select .select_box.open_select_list > a {
+  font-weight: 500;
+  color: var( --theme-color );
+}
+
+.qw_select .select_box.open_select_list > a:before {
+  -webkit-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+}
+
+.qw_select .select_box.open_select_list > a:after {
+  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+.qw_select .select_box.open_select_list > ul {
+  display: block;
+}
+
+.qw_inp {
+  margin-top: 1rem;
+  position: relative;
+  font-size: 1.2rem;
+  line-height: 1.8rem;
+  font-weight: 300;
+}
+
+.qw_inp textarea {
+  padding: 1rem 1.5rem;
+  width: 100%;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  border: 1px solid rgb(221,221,221);
+}
+
+.qw_inp .qw_placeholder {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 1rem 1.5rem;
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  color: rgb(135,135,135);
+}
+
+.qw_inp .qw_placeholder p {
+  padding-left: 0.8rem;
+}
+
+.qw_inp .qw_placeholder p i {
+  float: left;
+  width: 0.8rem;
+  margin-left: -0.8rem;
+}
+
+.qw_inp.is_active .qw_placeholder {
+  display: none;
+}
