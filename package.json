@@ -6,11 +6,9 @@
   "private": true,
   "scripts": {
     "dev": "node build/dev-server.js",
-    "alpha": "cross-env BUILD_TARGET=mobileweb BUILD_ENV=alpha npm run dev",
+    "alpha": "cross-env BUILD_TARGET=webview BUILD_ENV=alpha npm run dev",
     "build": "node build/build.js",
-    "build-alpha:mobileweb": "cross-env BUILD_TARGET=mobileweb BUILD_ENV=alpha npm run build",
     "build-alpha:webview": "cross-env BUILD_TARGET=webview BUILD_ENV=alpha npm run build",
-    "build:mobileweb": "cross-env BUILD_TARGET=mobileweb BUILD_ENV=prod npm run build",
     "build:webview": "cross-env BUILD_TARGET=webview BUILD_ENV=prod npm run build",
     "lint": "eslint --ext .js,.vue src",
     "fetch-api-doc": "node src/api/apidoc/fetchApiDoc.js"
