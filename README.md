@@ -5,5 +5,5 @@ NCP Store Front
 # 가이드
 
 [프론트 표준 개발 가이드](https://nhnent.dooray.com/share/posts/021NAuyRTEiar1vtz4tUew) <br>
-[회원연동 표준 개발 가이드](https://nhnent.dooray.com/share/posts/6J14VoMERUCoj1JpmKYj0A)
+[회원연동 표준 개발 가이드](https://nhnent.dooray.com/share/posts/6J14VoMERUCoj1JpmKYj0A) <br>
 [프론트 표준 디자인 가이드](https://nhnent.dooray.com/share/posts/6QyGF3V_R_ybjNqthk-jSQ)
