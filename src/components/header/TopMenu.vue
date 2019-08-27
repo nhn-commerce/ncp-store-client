@@ -5,6 +5,7 @@
     <router-link to="/cart" class="btn_cart">
       <span v-if="count && count.count>0" class="num">{{count.count>=100?'99+':count.count}}</span>
     </router-link>
+    <a href="#" class="btn_close" @click.prevent="closeApp()">닫기</a>
   </div>
 </template>
 
