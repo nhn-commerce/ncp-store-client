@@ -668,37 +668,10 @@ export default [
     }
   },
   {
-    path: '/etc/agreev02',
-    name: 'AgreeV02',
-    components: {
-      default: asyncComponent('etc/AgreeV02'),
-      header: genTitleHeader('이용약관'),
-      footer: SiteFooter
-    }
-  },
-  {
     path: '/etc/privacy',
     name: 'Privacy',
     components: {
       default: asyncComponent('etc/Privacy'),
-      header: genTitleHeader('개인정보 처리방침'),
-      footer: SiteFooter
-    }
-  },
-  {
-    path: '/etc/privacyv02',
-    name: 'PrivacyV02',
-    components: {
-      default: asyncComponent('etc/PrivacyV02'),
-      header: genTitleHeader('개인정보 처리방침'),
-      footer: SiteFooter
-    }
-  },
-  {
-    path: '/etc/privacyv03',
-    name: 'PrivacyV03',
-    components: {
-      default: asyncComponent('etc/PrivacyV03'),
       header: genTitleHeader('개인정보 처리방침'),
       footer: SiteFooter
     }

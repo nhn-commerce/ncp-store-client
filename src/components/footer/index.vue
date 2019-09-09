@@ -2,8 +2,8 @@
   <footer id="footer" v-show="!page.initDataFetching">
     <div class="footer_link">
       <div class="fl_inner">
-        <router-link to="/etc/agreev02" active-class="is_selected">이용약관</router-link>
-        <router-link to="/etc/privacyv03" active-class="is_selected" style="font-weight: bold;">개인정보처리방침</router-link>
+        <router-link to="/etc/agree" active-class="is_selected">이용약관</router-link>
+        <router-link to="/etc/privacy" active-class="is_selected" style="font-weight: bold;">개인정보처리방침</router-link>
         <a target="_blank" @click.prevent="openView">사업자정보확인</a>
         <a @click.prevent="maillTo">입점문의</a>
       </div>
