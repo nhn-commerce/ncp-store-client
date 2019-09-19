@@ -760,14 +760,6 @@ export default {
         return
       }
 
-      if (process.env.BUILD_TARGET === 'webview' && paytype === 'CREDIT_CARD') {
-        if (!compareAppVersion('4.3.3') && config.platform() === 'IOS') {
-          if (!confirm('아이폰에서 일부 카드( 삼성, 현대, 신한, 롯데 등)의 결제가 제한됩니다. 일반카드로 결제를 계속하겠습니까?')) {
-            return
-          }
-        }
-      }
-
       if (!this.$store.state.memberIsLogin()) {
         this.orderinfo.member = false
         this.orderinfo.updateMember = false
