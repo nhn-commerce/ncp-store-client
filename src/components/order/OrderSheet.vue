@@ -45,6 +45,33 @@
           </div>
         </section>
         <!-- // 쿠폰적용 -->
+        <section class="order_section" v-if="logined">
+          <div class="os_top">
+            <h3 class="title_style1 title">적립금 사용</h3>
+          </div>
+          <div class="os_con">
+            <dl class="order_acc">
+              <dt style="width:55%">
+                <table style="width: 100%">
+                  <tr>
+                    <th style="width: 50%;text-align:left;font-weight: normal">내 적립금</th>
+                    <td>{{MyMiliForma(ordersheet.paymentInfo.accumulationAmt)}} 원</td>
+                  </tr>
+                  <tr>
+                    <th style="width: 50%;text-align:left;font-weight: normal">사용 가능 적립금</th>
+                    <td>{{MyMiliForma(ordersheet.paymentInfo.availableMaxAccumulationAmt)}} 원</td>
+                  </tr>
+                </table>
+              </dt>
+              <dt style="width:20%;line-height: 64px">적립금 사용</dt>
+              <dd style="width:24%;line-height: 64px">
+                <input id="accumulations" type="number" v-model="input.accumulation" @change.prevent="preventAccmulation" style="vertical-align: middle">
+                <span style="line-height: 64px"> 원</span>
+              </dd>
+            </dl>
+          </div>
+        </section>
+        <!-- // 적립금사용 -->
         <order-amount v-if="ordersheet" :ordersheet="ordersheet"></order-amount>
         <!-- // 결제 정보 -->
         <!-- // 결제수단 선택 -->
@@ -271,7 +298,8 @@ export default {
         receiverContact1_three: '',
         receiverContact2_one: '',
         receiverContact2_two: '',
-        receiverContact2_three: ''
+        receiverContact2_three: '',
+        accumulation: ''
       },
       orderinfo: {
         useDefaultAddress: true,
@@ -315,6 +343,16 @@ export default {
     CouponApply
   },
   methods: {
+    preventAccmulation () {
+      if (this.input.accumulation > this.ordersheet.paymentInfo.availableMaxAccumulationAmt) {
+        this.input.accumulation = this.ordersheet.paymentInfo.availableMaxAccumulationAmt
+      } else if (this.input.accumulation < 0 || this.input.accumulation === '') {
+        this.input.accumulation = 0
+      }
+
+      this.input.accumulation = parseInt(this.input.accumulation)
+      this.$store.commit('ordersheet/CHANGE_ACCUMULATION_AMT', this.input.accumulation)
+    },
     MyMiliForma (val) {
       return formatCurrency(val)
     },
@@ -825,7 +863,8 @@ export default {
           ...addressData
         },
         coupons: coupon,
-        paymentAmtForVerification: this.ordersheet.paymentInfo.paymentAmt
+        paymentAmtForVerification: this.ordersheet.paymentInfo.paymentAmt - this.input.accumulation,
+        subPayAmt: this.input.accumulation
       }
       let confirmUrl = `${location.protocol}//${location.host}/order/paymentconfirm`
       let flg = false

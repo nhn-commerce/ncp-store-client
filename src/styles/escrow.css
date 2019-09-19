@@ -1163,6 +1163,49 @@
   padding-left: 0;
 }
 
+.order_acc {
+  padding: 2rem 1.5rem;
+}
+
+.order_acc:after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+.order_acc dt {
+  float: left;
+  font-weight: 500;
+  line-height: 3.2rem;
+  width: 20%;
+}
+
+.order_acc dd {
+  float: left;
+  line-height: 3.2rem;
+  width: 29%;
+  margin-left: 1%;
+}
+
+.order_acc input[type="number"] {
+  width: 84%;
+  height: 3.2rem;
+  line-height: 3rem;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  border: 1px solid rgb(221,221,221);
+  vertical-align: top;
+  font-size:12px;
+  text-align: right;
+}
+
+.order_acc span {
+  display: inline-block;
+  width: 15%;
+  line-height: 3.2rem;
+  float: right;
+}
+
 .order_info select,
 .order_info input[type="text"],
 .order_info input[type="tel"],

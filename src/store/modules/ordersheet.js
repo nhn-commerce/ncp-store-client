@@ -56,6 +56,7 @@ export default {
   namespaced: true,
   mixins: [apiStore],
   state: {
+    accumulationAmt: 0,
     couponAmt: 0,
     couponRequest: {
       cartCouponIssueNo: 0,
@@ -560,6 +561,9 @@ export default {
     },
     CHANGE_COUPON_DELIVERY_CLICK_TYPE (state, val) {
       state.couponDeliveryClickType = val
+    },
+    CHANGE_ACCUMULATION_AMT (state, val) {
+      state.accumulationAmt = val
     }
   },
   getters: {
