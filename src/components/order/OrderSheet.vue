@@ -267,7 +267,7 @@ import OrderAddressNoMember from './OrderAddressNoMember'
 import OrderProduct from './OrderProduct'
 import OrderAmount from './OrderAmount'
 import CouponApply from './CouponApply'
-import Agree from '../etc/Agree'
+import Agree from '../etc/AgreeV01'
 export default {
   name: 'OrderSheet',
   metaInfo: {

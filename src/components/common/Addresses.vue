@@ -60,9 +60,6 @@ export default {
       searchkeyword: ''
     }
   },
-  metaInfo: {
-    title: '주소찾기'
-  },
   methods: {
     searchAddresses () {
       if (this.keyword === '' && this.keyword.length === 0) {
