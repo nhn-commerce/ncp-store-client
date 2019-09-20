@@ -242,7 +242,7 @@
 
 import { mapState, mapGetters } from 'vuex'
 import { addClass, removeClass, scriptLoader } from '@/utils/utils'
-import { formatCurrency, compareAppVersion } from '@/utils/StringUtils'
+import { formatCurrency } from '@/utils/StringUtils'
 import cookies from 'js-cookie'
 import config from '@/config/index'
 import Addresses from '../common/Addresses'
