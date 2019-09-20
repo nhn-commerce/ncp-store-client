@@ -1,7 +1,7 @@
 <template>
   <div class="util_box">
     <a href="/search" class="btn_search" @click.prevent="show_search_layer()">검색버튼</a>
-    <router-link to="/mypage" class="btn_mymenu">마이페이지</router-link>
+    <router-link :to="getMyPagePath()" class="btn_mymenu">마이페이지</router-link>
     <router-link to="/cart" class="btn_cart">
       <span v-if="count && count.count>0" class="num">{{count.count>=100?'99+':count.count}}</span>
     </router-link>
@@ -40,7 +40,13 @@ export default {
       cookies.remove('APP-TOKEN')
       location.href = `${config.urlScheme}://close`
     },
-    ...mapMutations('search', ['show_search_layer'])
+    ...mapMutations('search', ['show_search_layer']),
+    getMyPagePath () {
+      if (!this.$store.getters.isLogined) {
+        return '/member/nonemember/ordersearch'
+      }
+      return '/mypage'
+    }
   },
   beforeMount () {
     /** cart post to server */
