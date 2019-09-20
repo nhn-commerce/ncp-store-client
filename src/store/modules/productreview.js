@@ -21,7 +21,7 @@ const apiStore = createNcpApiStore([
     method: 'get',
     queryParams: true,
     onSuccess (state, payload) {
-      state.productReviews = [...state.productReviews || [], ...payload.data.items]
+      state.productReviews = [...state.productReviews || [], ...payload.data.items || []]
       state.averageRate = payload.data.rate
     },
     cacheable: false,

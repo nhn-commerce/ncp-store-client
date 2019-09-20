@@ -16,7 +16,7 @@
     </div>
     <div v-if="productReviews && productReviews.length === 0" class="no_review">
       <p>작성 된 상품평이 없습니다.</p>
-      <div class="btn">
+      <div class="btn" v-if="isLogin()">
         <a @click.prevent="toReviewable" class="btn_style1 btn_write">상품평 작성하기</a>
       </div>
     </div>
@@ -58,6 +58,9 @@ export default {
     },
     toReviewable () {
       window.location.href = '/mypage/myreviewable'
+    },
+    isLogin () {
+      return this.$store.getters.isLogined
     },
     ...mapActions('productreview', ['fetchMore'])
   },
