@@ -103,6 +103,22 @@
               </div>
             </li>
 
+            <li v-if="NONE_MEMBER_MALL_AGREEMENT" :class="{'is_open':agreen.txt7}">
+              <div class="oa_check">
+                <div class="check_style1">
+                  <input type="checkbox" id="agreeCheck7" v-model="agreenCheck.txt7">
+                  <label for="agreeCheck7">
+                    <span></span>비회원 이용약관 동의</label>
+                </div>
+                <button type="button" class="oa_btn" @click="agreenTxtShow('7')">
+                  <span></span>
+                </button>
+              </div>
+              <div class="oa_con">
+                <Agree/>
+              </div>
+            </li>
+
             <li v-if="NONE_MEMBER_PRIVACY_USAGE_AGREEMENT" :class="{'is_open':agreen.txt1}">
               <div class="oa_check">
                 <div class="check_style1">
@@ -115,7 +131,7 @@
                 </button>
               </div>
               <div class="oa_con">
-                1. 수집목적<br> 물품 구매 및 배송처리<br><br> 
+                1. 수집목적<br> 물품 구매 및 배송처리<br><br>
                 2. 수집항목<br> 주문자의 이름, 이메일, 휴대폰번호 및 수령인의 이름, 휴대폰번호, 배송지 주소<br><br>
                 <span class="txt_em">3. 보유이용기간<br> 주문 완료 시부터 1년 동안 보관함. 단, 관련 법령에서 별도의 보존기간을 명시한 경우에는 그 기간을 따름.</span>
               </div>
@@ -178,8 +194,8 @@
               <div class="oa_con size_12">
                 <strong class="size_13">1. 이전 받는 자와 국적<br>
                 <div v-for="foreign in ordersheet.foreignPartners" :key="foreign.partnerName">
-                  회사명: {{foreign.partnerName}}<br> 
-                  국적: {{foreign.countryCd}}<br> 
+                  회사명: {{foreign.partnerName}}<br>
+                  국적: {{foreign.countryCd}}<br>
                   정보관리책임자: {{foreign.privacyManagerName }}({{foreign.privacyManagerPhoneNo}})<br><br>
                 </div>
                 </strong>
@@ -251,6 +267,7 @@ import OrderAddressNoMember from './OrderAddressNoMember'
 import OrderProduct from './OrderProduct'
 import OrderAmount from './OrderAmount'
 import CouponApply from './CouponApply'
+import Agree from '../etc/Agree'
 export default {
   name: 'OrderSheet',
   metaInfo: {
@@ -266,7 +283,8 @@ export default {
         txt1: false,
         txt2: false,
         txt3: false,
-        txt4: false
+        txt4: false,
+        txt7: false
       },
       agreenCheck: {
         txt0: false,
@@ -275,7 +293,8 @@ export default {
         txt3: false,
         txt4: false,
         txt5: false,
-        txt6: false
+        txt6: false,
+        txt7: false
       },
       orderSheetNo: this.$store.state.route.params.orderSheetNo,
       logined: this.$store.getters.isLogined,
@@ -340,7 +359,8 @@ export default {
     OrderAddressNoMember,
     OrderProduct,
     OrderAmount,
-    CouponApply
+    CouponApply,
+    Agree
   },
   methods: {
     preventAccmulation () {
@@ -372,6 +392,9 @@ export default {
           break
         case '4':
           this.agreen.txt4 = !this.agreen.txt4
+          break
+        case '7':
+          this.agreen.txt7 = !this.agreen.txt7
           break
       }
     },
@@ -899,6 +922,7 @@ export default {
     agreenCheckALL: {
       get () {
         return (this.agreenCheck.txt0 === this.PRIVACY_USAGE_AGREEMENT) &&
+          (this.agreenCheck.txt7 === this.NONE_MEMBER_MALL_AGREEMENT) &&
           (this.agreenCheck.txt1 === this.NONE_MEMBER_PRIVACY_USAGE_AGREEMENT) &&
           (this.agreenCheck.txt2 === this.SELLER_PRIVACY_USAGE_AGREEMENT) &&
           (this.agreenCheck.txt3 === this.CUSTOMS_CLEARANCE_AGREEMENT) &&
@@ -909,6 +933,9 @@ export default {
       set (val) {
         if (this.PRIVACY_USAGE_AGREEMENT) {
           this.agreenCheck.txt0 = val
+        }
+        if (this.NONE_MEMBER_MALL_AGREEMENT) {
+          this.agreenCheck.txt7 = val
         }
         if (this.NONE_MEMBER_PRIVACY_USAGE_AGREEMENT) {
           this.agreenCheck.txt1 = val
@@ -939,6 +966,13 @@ export default {
       get () {
         if (this.ordersheet) {
           return this.ordersheet.agreementTypes.some(item => item === 'TERMS_OF_USE')
+        }
+      }
+    },
+    NONE_MEMBER_MALL_AGREEMENT: {
+      get () {
+        if (this.ordersheet) {
+          return this.ordersheet.agreementTypes.some(item => item === 'NONE_MEMBER_PRIVACY_USAGE_AGREEMENT')
         }
       }
     },
