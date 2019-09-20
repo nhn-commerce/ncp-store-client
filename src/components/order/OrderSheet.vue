@@ -885,7 +885,7 @@ export default {
         this.payBtnOnce = true
         NCPPay.setConfiguration({
           clientId: config.ncpClientId,
-          accessToken: cookies.get('ncpAccessToken'),
+          accessToken: cookies.get('ncpAccessToken') || '',
           confirmUrl: confirmUrl,
           platform: config.platform()
         })
