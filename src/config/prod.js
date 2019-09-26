@@ -17,7 +17,6 @@ export default {
   // kakaoKey: <kakao key>,
 
   ncpApiBaseUrl: 'https://api.e-ncp.com/',
-  payPlusJs: 'https://pay.kcp.co.kr/plugin/payplus_web.jsp',
 
   payJs: 'ncp_pay.js',
   searchJs: 'ncp_search.js'

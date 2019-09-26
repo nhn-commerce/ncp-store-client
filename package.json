@@ -8,7 +8,7 @@
     "dev": "node build/dev-server.js",
     "alpha": "cross-env BUILD_TARGET=webview BUILD_ENV=alpha npm run dev",
     "build": "node build/build.js",
-    "build-alpha:webview": "cross-env BUILD_TARGET=webview BUILD_ENV=alpha npm run build",
+    "build-alpha:webview": "cross-env BUILD_TARGET=webview BUILD_ENV=alpha NODE_ENV=development npm run build",
     "build:webview": "cross-env BUILD_TARGET=webview BUILD_ENV=prod npm run build",
     "lint": "eslint --ext .js,.vue src",
     "fetch-api-doc": "node src/api/apidoc/fetchApiDoc.js"
@@ -23,6 +23,7 @@
     "js-cookie": "^2.1.4",
     "lory.js": "^2.3.3",
     "lru-cache": "^4.1.1",
+    "mobile-device-detect": "^0.3.3",
     "normalize.css": "^7.0.0",
     "platform": "^1.3.5",
     "qs": "^6.5.1",

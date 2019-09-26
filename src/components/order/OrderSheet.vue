@@ -257,7 +257,7 @@
 /* global NCPPay */
 
 import { mapState, mapGetters } from 'vuex'
-import { addClass, removeClass, scriptLoader } from '@/utils/utils'
+import { addClass, removeClass } from '@/utils/utils'
 import { formatCurrency } from '@/utils/StringUtils'
 import cookies from 'js-cookie'
 import config from '@/config/index'
@@ -272,9 +272,6 @@ export default {
   name: 'OrderSheet',
   metaInfo: {
     title: '주문결제'
-  },
-  beforeCreate () {
-    scriptLoader(config.payPlusJs)
   },
   data () {
     return {
