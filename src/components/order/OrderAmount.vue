@@ -44,6 +44,11 @@
                 <dd>
                   <strong>{{MyMiliFormat(ordersheet.paymentInfo.cartCouponAmt)}}</strong> 원</dd>
               </dl>
+              <dl v-if="this.$store.state.ordersheet.accumulationAmt!==0">
+                <dt>적립금 할인</dt>
+                <dd>
+                  <strong>{{MyMiliFormat(this.$store.state.ordersheet.accumulationAmt)}}</strong> 원</dd>
+              </dl>
             </div>
           </li>
           <li :class="{'is_open':detailDeliveryAmtFlag}">
@@ -79,7 +84,7 @@
         <dl class="price_total">
           <dt>총 결제금액</dt>
           <dd>
-            <strong>{{MyMiliFormat(ordersheet.paymentInfo.paymentAmt)}}</strong> 원</dd>
+            <strong>{{MyMiliFormat(payAmt)}}</strong> 원</dd>
         </dl>
       </div>
     </div>
@@ -102,7 +107,8 @@ export default {
         return this.ordersheet.paymentInfo.totalAdditionalDiscountAmt +
           this.ordersheet.paymentInfo.totalImmediateDiscountAmt +
           this.ordersheet.paymentInfo.productCouponAmt +
-          this.ordersheet.paymentInfo.cartCouponAmt
+          this.ordersheet.paymentInfo.cartCouponAmt +
+          this.$store.state.ordersheet.accumulationAmt
       }
     },
     totalDeliveryAmt: {

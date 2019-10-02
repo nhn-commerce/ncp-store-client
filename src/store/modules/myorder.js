@@ -394,7 +394,7 @@ export default {
         const firstamt = state.order.firstOrderAmount
         const showPriceInfo = {}
         showPriceInfo.showStandardAmt = formatCurrency(firstamt.standardAmt)
-        showPriceInfo.totalDisAmt = formatCurrency(firstamt.additionalDiscountAmt + firstamt.immediateDiscountAmt + firstamt.cartCouponDiscountAmt + firstamt.productCouponDiscountAmt)
+        showPriceInfo.totalDisAmt = formatCurrency(firstamt.additionalDiscountAmt + firstamt.immediateDiscountAmt + firstamt.cartCouponDiscountAmt + firstamt.productCouponDiscountAmt + firstamt.subPayAmt)
         showPriceInfo.immDisAmt = formatCurrency(firstamt.immediateDiscountAmt)
         showPriceInfo.addDisAmt = formatCurrency(firstamt.additionalDiscountAmt)
         showPriceInfo.proCouDisAmt = formatCurrency(firstamt.productCouponDiscountAmt)
@@ -404,6 +404,8 @@ export default {
         showPriceInfo.delCouDisAmt = formatCurrency(firstamt.deliveryCouponDiscountAmt)
         showPriceInfo.remDelAmt = formatCurrency(firstamt.remoteDeliveryAmt)
         showPriceInfo.payAmt = formatCurrency(firstamt.payAmt)
+        showPriceInfo.chargeAmt = formatCurrency(firstamt.chargeAmt)
+        showPriceInfo.subPayAmt = formatCurrency(firstamt.subPayAmt)
 
         if (state.order.refundInfos) {
           const refundInfos = state.order.refundInfos
@@ -411,16 +413,19 @@ export default {
           let claimSubtractionAmt = 0
           let claimDeliveryAmt = 0
           let refundPayAmt = 0
+          let refundMainPayAmt = 0
           refundInfos.forEach(refundInfo => {
             claimProductAmt += refundInfo.productAmtInfo.totalAmt
             claimSubtractionAmt += refundInfo.subtractionAmtInfo.totalAmt
             claimDeliveryAmt += refundInfo.deliveryAmtInfo.totalAmt
             refundPayAmt += refundInfo.refundPayAmt
+            refundMainPayAmt += refundInfo.refundMainPayAmt
           })
           showPriceInfo.claimProductAmt = formatCurrency(claimProductAmt)
           showPriceInfo.claimSubtractionAmt = formatCurrency(claimSubtractionAmt)
           showPriceInfo.claimDeliveryAmt = formatCurrency(claimDeliveryAmt)
           showPriceInfo.refundPayAmt = formatCurrency(refundPayAmt)
+          showPriceInfo.refundMainPayAmt = formatCurrency(refundMainPayAmt)
         }
 
         state.order.showPriceInfo = showPriceInfo

@@ -104,6 +104,12 @@
                       <strong>{{order.showPriceInfo.cartCouDisAmt}}</strong> 원
                     </dd>
                   </dl>
+                  <dl v-if="order.showPriceInfo.subPayAmt !== 0">
+                    <dt>적립금 할인</dt>
+                    <dd>
+                      <strong>{{order.showPriceInfo.subPayAmt}}</strong> 원
+                    </dd>
+                  </dl>
                 </div>
               </dd>
               <dd>
@@ -138,7 +144,7 @@
         <dl class="buy_total" v-if="order.showPriceInfo">
           <dt>결제금액</dt>
           <dd>
-            <strong>{{order.showPriceInfo.payAmt}}</strong> 원</dd>
+            <strong>{{order.showPriceInfo.chargeAmt}}</strong> 원</dd>
         </dl>
       </div>
     </section>
@@ -171,7 +177,7 @@
             <span>(신용카드)</span>
           </dt>
           <dd>
-            <strong>{{order.showPriceInfo.refundPayAmt}}</strong> 원</dd>
+            <strong>{{order.showPriceInfo.refundMainPayAmt}}</strong> 원</dd>
         </dl>
       </div>
     </section>
