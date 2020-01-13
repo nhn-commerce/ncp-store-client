@@ -529,6 +529,15 @@ export default {
           ]
         validateRole.push(...nomember)
       } else {
+        const member =
+          [{
+            inputValue: this.ordersheet.ordererContact.ordererName,
+            message: '주문자명을 입력해주세요',
+            pattern: /\S+/,
+            input: inputRefs.ordererName
+          }
+          ]
+        validateRole.push(...member)
         if (!this.ordersheet.ordererContact.ordererContact1_one ||
           !this.ordersheet.ordererContact.ordererContact1_two ||
           !this.ordersheet.ordererContact.ordererContact1_three

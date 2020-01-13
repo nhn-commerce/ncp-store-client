@@ -140,6 +140,7 @@ export default {
     async fetchOrder ({ state, dispatch, commit, rootGetters }, orderSheetNo) {
       await dispatch('_getOrderSheets', { params: { orderSheetNo } })
 
+      state.ordersheet.ordererContact.ordererNameInputFlg = state.ordersheet.ordererContact.ordererName ? 'true' : 'false'
       if (rootGetters.isLogined) {
         await dispatch('_orderCoupons', { params: { orderSheetNo } })
         commit('CLEAR_REPEAT_COUPON')

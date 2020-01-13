@@ -6,23 +6,23 @@
       </div>
       <div class="os_con no_mbr_order">
         <div class="order_info">
-          <dl :class="{'order_info_complete':ordererNameInputFlg === 'true'}">
+          <dl :class="{'order_info_complete':ordererContact.ordererNameInputFlg === 'true'}">
             <dt>
               <label for="ordererName">
-                <span>주문자명</span>
+                <span class="important">주문자명</span>
               </label>
             </dt>
             <dd>
-              <label v-if="ordererNameInputFlg === 'true'">
+              <label v-if="ordererContact.ordererNameInputFlg === 'true'">
                 <span>{{ordererContact.ordererName}}</span>
               </label>
-              <input v-if="ordererNameInputFlg === 'false'" id="ordererName" type="text" v-model="inputOrdererName" ref="ordererName">
+              <input v-if="ordererContact.ordererNameInputFlg === 'false'" id="ordererName" type="text" v-model="inputOrdererName" ref="ordererName">
             </dd>
           </dl>
           <dl :class="{'order_info_complete':ordererContact.ordererContact1}">
             <dt>
               <label for="ordererContact1_one">
-                <span>휴대전화</span>
+                <span class="important">휴대전화</span>
               </label>
             </dt>
             <dd>
@@ -278,8 +278,7 @@ export default {
       newAddress: this.recent.length === 0,
       openSearch: false,
       recentAddresses: this.recent.length > 0 ? JSON.parse(JSON.stringify(this.recent[0])) : null,
-      selectedMemo: '',
-      ordererNameInputFlg: this.ordererContact.ordererName ? 'true' : 'false'
+      selectedMemo: ''
     }
   },
   methods: {
