@@ -75,7 +75,7 @@ export default {
   actions: {
     async addToCart ({ state, dispatch, commit, rootState, rootGetters }, carts) {
       let ret = true
-      if (rootGetters.isLogined && cookies.get('ncpMemberAgree') === 'Y' && cookies.get('memberStatus') !== 'WAITING') {
+      if (rootGetters.isLogined && cookies.get('memberStatus') !== 'WAITING') {
         await dispatch('_addCart', { data: carts }).catch(e => {
           if (e.data.code === 'PPE0001') {
             ret = false
@@ -91,7 +91,7 @@ export default {
       return ret
     },
     async fetchCart ({ state, commit, dispatch, rootState, rootGetters }) {
-      if (rootGetters.isLogined && cookies.get('ncpMemberAgree') === 'Y' && cookies.get('memberStatus') !== 'WAITING') {
+      if (rootGetters.isLogined && cookies.get('memberStatus') !== 'WAITING') {
         await dispatch('_getCart')
       } else {
         const items = JSON.parse(window.localStorage.cartInfo || '[]')
@@ -101,7 +101,7 @@ export default {
           state.cart = {}
         }
       }
-      await commit('FORMAT_DATAS', { isLogined: (rootGetters.isLogined && cookies.get('ncpMemberAgree') === 'Y' && cookies.get('memberStatus') !== 'WAITING') })
+      await commit('FORMAT_DATAS', { isLogined: (rootGetters.isLogined && cookies.get('memberStatus') !== 'WAITING') })
       if (state.initFlg) {
         state.initFlg = false
         await commit('CHECK_ALL', true)
@@ -109,7 +109,7 @@ export default {
       await dispatch('calculate')
     },
     fetchCartCount ({ state, commit, dispatch, rootGetters, rootState }) {
-      if (rootGetters.isLogined && cookies.get('ncpMemberAgree') === 'Y' && cookies.get('memberStatus') !== 'WAITING') {
+      if (rootGetters.isLogined && cookies.get('memberStatus') !== 'WAITING') {
         dispatch('_countCart')
       } else {
         const items = JSON.parse(window.localStorage.cartInfo || '[]')
@@ -121,7 +121,7 @@ export default {
       }
     },
     async deleteCartByOptions ({ state, dispatch, commit, rootState, rootGetters }, options) {
-      if (rootGetters.isLogined && cookies.get('ncpMemberAgree') === 'Y' && cookies.get('memberStatus') !== 'WAITING') {
+      if (rootGetters.isLogined && cookies.get('memberStatus') !== 'WAITING') {
         const cartNo = options.map(option => option.cartNo)
         await dispatch('_deleteCart', { params: { cartNo } })
       } else {
@@ -140,7 +140,7 @@ export default {
       dispatch('fetchCartCount')
     },
     async deleteCartByCartNos ({ state, dispatch, commit, rootState, rootGetters }, cartNo) {
-      if (rootGetters.isLogined && cookies.get('ncpMemberAgree') === 'Y' && cookies.get('memberStatus') !== 'WAITING') {
+      if (rootGetters.isLogined && cookies.get('memberStatus') !== 'WAITING') {
         await dispatch('_deleteCart', { params: { cartNo } })
       } else {
         const items = JSON.parse(window.localStorage.cartInfo || '[]')
@@ -154,7 +154,7 @@ export default {
       dispatch('fetchCartCount')
     },
     async putCarts ({ state, dispatch, commit, rootState, rootGetters }, carts) {
-      if (rootGetters.isLogined && cookies.get('ncpMemberAgree') === 'Y' && cookies.get('memberStatus') !== 'WAITING') {
+      if (rootGetters.isLogined && cookies.get('memberStatus') !== 'WAITING') {
         await dispatch('_updateCart', { data: carts })
       } else {
         const items = JSON.parse(window.localStorage.cartInfo || '[]')
@@ -172,7 +172,7 @@ export default {
     },
     async calculate ({ state, commit, dispatch, rootState, rootGetters }) {
       if (state.checkOptions.length > 0) {
-        if (rootGetters.isLogined && cookies.get('ncpMemberAgree') === 'Y' && cookies.get('memberStatus') !== 'WAITING') {
+        if (rootGetters.isLogined && cookies.get('memberStatus') !== 'WAITING') {
           const cartNo = state.checkOptions.map(option => option.cartNo)
           await dispatch('_calculate', { params: { cartNo } })
           if (state.calculate) {
