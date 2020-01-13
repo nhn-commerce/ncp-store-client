@@ -103,7 +103,7 @@
 
         <div class="o_cpt_txt" v-if="result !== 'SUCCESS'">
           <p>
-            실패사유를 확인하신 후 ‘이전페이지 가기’버튼을 통해 주문/결제를 다시 시도하시거나, 계속 실패되시는 경우 고객센터({{telNum}})로 문의 주시기 바랍니다.
+            실패사유를 확인하신 후 ‘이전페이지 가기’버튼을 통해 주문/결제를 다시 시도하시거나, 계속 실패되시는 경우 고객센터({{servicePhoneNo}})로 문의 주시기 바랍니다.
           </p>
         </div>
 
@@ -122,11 +122,10 @@
 </template>
 <script>
 /* global NCPSearch */
-import { mapState } from 'vuex'
+import { mapState, mapGetters } from 'vuex'
 import { formatCurrency, telnoFormat } from '@/utils/StringUtils'
 import { loadNCPSearchScript } from '@/store'
 import cookies from 'js-cookie'
-import config from '@/config'
 
 export default {
   name: 'PaymentConfirm',
@@ -141,8 +140,7 @@ export default {
       vaDate: '',
       payType: '',
       resp: '',
-      nonemember: false,
-      telNum: config.telNum
+      nonemember: false
     }
   },
   methods: {
@@ -219,7 +217,8 @@ export default {
         return this.$store.state.route.query.message
       }
     },
-    ...mapState('myorder', ['order'])
+    ...mapState('myorder', ['order']),
+    ...mapGetters('common', ['servicePhoneNo'])
   },
   beforeMount () {
     if (!window.location.hash) {

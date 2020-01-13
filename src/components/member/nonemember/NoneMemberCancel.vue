@@ -123,9 +123,8 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapState, mapGetters } from 'vuex'
 import { formatCurrency } from '@/utils/StringUtils'
-import config from '@/config'
 
 export default {
   data () {
@@ -192,7 +191,7 @@ export default {
         this.running = false
       }).catch((e) => {
         if (e.data.code === 'CL904') {
-          alert(`판매자 귀책사유로 인해 초도배송비가 발생합니다. 고객센터(${config.telNum})를 통해 취소신청 해 주세요.`)
+          alert(`판매자 귀책사유로 인해 초도배송비가 발생합니다. 고객센터(${this.servicePhoneNo})를 통해 취소신청 해 주세요.`)
         }
         this.running = false
       })
@@ -213,7 +212,8 @@ export default {
         this.productCnt = val
       }
     },
-    ...mapState('guestorder', ['guestClaim', 'guestClaimEstimate'])
+    ...mapState('guestorder', ['guestClaim', 'guestClaimEstimate']),
+    ...mapGetters('common', ['servicePhoneNo'])
   }
 }
 </script>

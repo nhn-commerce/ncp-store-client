@@ -160,10 +160,9 @@
 
 <script>
 import $ from 'jquery'
-import { mapState } from 'vuex'
+import { mapState, mapGetters } from 'vuex'
 import { formatCurrency } from '@/utils/StringUtils'
 import Addresses from '@/components/common/Addresses'
-import config from '@/config'
 
 export default {
   data () {
@@ -285,7 +284,7 @@ export default {
         window.location.href = fromUrl
       }).catch((e) => {
         if (e.data.code === 'CL904') {
-          alert(`판매자 귀책사유로 인해 초도배송비가 발생합니다. 고객센터(${config.telNum})를 통해 취소신청 해 주세요.`)
+          alert(`판매자 귀책사유로 인해 초도배송비가 발생합니다. 고객센터(${this.servicePhoneNo})를 통해 취소신청 해 주세요.`)
         }
         this.running = false
       })
@@ -308,7 +307,8 @@ export default {
         this.productCnt = val
       }
     },
-    ...mapState('myorder', ['claimOrderOption', 'claimEstimate'])
+    ...mapState('myorder', ['claimOrderOption', 'claimEstimate']),
+    ...mapGetters('common', ['servicePhoneNo'])
   }
 }
 </script>

@@ -290,7 +290,7 @@
         <dl class="claim_notice">
           <dt>유의사항</dt>
           <dd>
-            반품사유구분에 따라 반품배송비의 부담 주체가 구매자 또는 <br> 판매자로 구분됩니다. 사유가 불명확한 경우 반드시 고객센터<br> ({{ telNum }}) 또는 상품문의를 통해 협의 후 반품신청을 해주세요.
+            반품사유구분에 따라 반품배송비의 부담 주체가 구매자 또는 <br> 판매자로 구분됩니다. 사유가 불명확한 경우 반드시 고객센터<br> ({{ servicePhoneNo }}) 또는 상품문의를 통해 협의 후 반품신청을 해주세요.
           </dd>
           <dd>
             올바르지 않은 사유를 선택한 경우 판매자에 의해 반품이 거부될 수<br> 있습니다.
@@ -313,7 +313,6 @@ import { mapState, mapGetters } from 'vuex'
 import { formatCurrency } from '@/utils/StringUtils'
 import Addresses from '@/components/common/Addresses'
 import Validater from '@/utils/validateUtils'
-import config from '@/config'
 
 export default {
   data () {
@@ -341,8 +340,7 @@ export default {
         contact2_1: '',
         contact2_2: '',
         contact2_3: ''
-      },
-      telNum: config.telNum
+      }
     }
   },
   metaInfo: {
@@ -610,7 +608,8 @@ export default {
       }
     },
     ...mapState('myorder', ['claimOrderOption', 'multipleClaimEstimate', 'responsibleObjectTypelabel']),
-    ...mapGetters('myorder', ['returnInfo', 'viewableClaimOptions'])
+    ...mapGetters('myorder', ['returnInfo', 'viewableClaimOptions']),
+    ...mapGetters('common', ['servicePhoneNo'])
   }
 }
 </script>

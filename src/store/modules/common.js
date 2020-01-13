@@ -123,6 +123,32 @@ export default {
         return state.malls.orderStatusType
       }
       return null
+    },
+    footerInfo (state) {
+      if (state.malls) {
+        let businessNo = state.malls.serviceBasicInfo.businessRegistrationNo
+        if (businessNo) {
+          businessNo = businessNo.substr(0, 3) + '-' + businessNo.substr(3, 2) + '-' + businessNo.substr(5)
+        }
+        return {
+          phoneNo: state.malls.mall.serviceCenter.phoneNo,
+          email: state.malls.mall.serviceCenter.email,
+          companyName: state.malls.serviceBasicInfo.companyName,
+          businessRegistrationNo: businessNo,
+          representativeName: state.malls.serviceBasicInfo.representativeName,
+          onlineMarketingBusinessDeclarationNo: state.malls.serviceBasicInfo.onlineMarketingBusinessDeclarationNo,
+          zipCd: state.malls.serviceBasicInfo.zipCd,
+          address: state.malls.serviceBasicInfo.address,
+          addressDetail: state.malls.serviceBasicInfo.addressDetail,
+          mallName: state.malls.mall.mallName,
+          privacyManagerName: state.malls.serviceBasicInfo.privacyManagerName
+        }
+      }
+    },
+    servicePhoneNo (state) {
+      if (state.malls) {
+        return state.malls.mall.serviceCenter.phoneNo
+      }
     }
   },
   mutations: {

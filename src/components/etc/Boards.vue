@@ -125,7 +125,7 @@ export default {
     callOk () {
       let ret = confirm('지금 고객센터로 전화하시겠습니까? ')
       if (ret) {
-        window.location.href = `tel:${config.telNum}`
+        window.location.href = `tel:${this.servicePhoneNo}`
       }
     },
     toInquire () {
@@ -139,7 +139,8 @@ export default {
   },
   computed: {
     ...mapState('display', ['boardsArticlesCategorys', 'boardsCategorys', 'boardItem']),
-    ...mapGetters('authentication', ['isAvailableMember'])
+    ...mapGetters('authentication', ['isAvailableMember']),
+    ...mapGetters('common', ['servicePhoneNo'])
   },
   components: {
   }

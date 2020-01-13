@@ -27,7 +27,7 @@
         </div>
         <div class="mbr_lst_txt">
           <p>주문 시 입력한 이메일 주소 또는 휴대폰번호로<br>임시 비밀번호를 보내 드립니다.</p>
-          <p>전송 받기 불가 시 고객센터로 문의바랍니다. ({{ telNum }})</p>
+          <p>전송 받기 불가 시 고객센터로 문의바랍니다. ({{ servicePhoneNo }})</p>
         </div>
       </div>
     </fieldset>
@@ -35,7 +35,7 @@
 </template>
 
 <script>
-import config from '@/config'
+import { mapGetters } from 'vuex'
 
 export default {
   metaInfo: {
@@ -45,13 +45,13 @@ export default {
   data () {
     return {
       orderNo: '',
-      replyType: 'EMAIL',
-      telNum: config.telNum
+      replyType: 'EMAIL'
     }
   },
   components: {
   },
   computed: {
+    ...mapGetters('common', ['servicePhoneNo'])
   },
   methods: {
     getPassword () {

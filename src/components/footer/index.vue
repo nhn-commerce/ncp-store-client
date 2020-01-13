@@ -8,7 +8,7 @@
         <a @click.prevent="maillTo">입점문의</a>
       </div>
     </div>
-    <div class="footer_info">
+    <div class="footer_info" v-if="footerInfo">
       <address class="address">
         <dl class="customer">
           <dt>
@@ -16,46 +16,46 @@
           </dt>
           <dd>
             <em>대표전화 </em>
-            <a @click.prevent="call()">{{ telNum }}</a>
+            <a @click.prevent="call">{{ footerInfo.phoneNo }}</a>
           </dd>
           <dd>
             <em>상담시간 </em>월 ~ 금, 오전 10시 ~ 오후 7시</dd>
           <dd>
             <em>e메일 </em>
-            <a @click.prevent="maillTo">paycoplusshop@nhn.com</a>
+            <a @click.prevent="maillTo">{{ footerInfo.email }}</a>
           </dd>
         </dl>
         <dl>
           <dt>상호</dt>
-          <dd>엔에이치엔(주)</dd>
+          <dd>{{ footerInfo.companyName }}</dd>
         </dl>
         <dl>
           <dt>대표</dt>
-          <dd>정우진</dd>
+          <dd>{{ footerInfo.representativeName }}</dd>
         </dl>
         <dl>
           <dt>주소</dt>
           <dd>
-            13487 경기도 성남시 분당구 대왕판교로645번길 16 <br> NHN 플레이뮤지엄
+            {{ footerInfo.zipCd }} {{ footerInfo.address }} <br> {{ footerInfo.addressDetail }}
           </dd>
         </dl>
       </address>
       <div class="registration">
         <dl>
           <dt>개인정보관리 책임자</dt>
-          <dd>황선영</dd>
+          <dd>{{ footerInfo.privacyManagerName }}</dd>
         </dl>
         <dl>
           <dt>통신판매업신고번호</dt>
-          <dd>제 2013 - 경기성남 - 1067호</dd>
+          <dd>{{ footerInfo.onlineMarketingBusinessDeclarationNo }}</dd>
         </dl>
         <dl>
           <dt>사업자 등록번호</dt>
-          <dd>144 - 81 - 15549</dd>
+          <dd>{{ footerInfo.businessRegistrationNo }}</dd>
         </dl>
       </div>
       <p class="notice">
-        페이코 플러스숍은 통신판매중개자로서 통신판매의 당사자가 아니며, <br> 광고, 상품주문, 배송 및 환불의 의무와 책임은 각 판매업체에 있습니다.
+        {{ footerInfo.mallName }}은 통신판매중개자로서 통신판매의 당사자가 아니며, <br> 광고, 상품주문, 배송 및 환불의 의무와 책임은 각 판매업체에 있습니다.
       </p>
       <p class="copyright">ⓒ NHN Corp.All rights reserved.</p>
     </div>
@@ -67,7 +67,7 @@
 <script>
 import BackButton from './BackButton'
 import GoTopButton from './GoTopButton'
-import { mapState } from 'vuex'
+import { mapState, mapGetters } from 'vuex'
 import config from '@/config'
 
 export default {
@@ -75,13 +75,9 @@ export default {
     BackButton,
     GoTopButton
   },
-  data () {
-    return {
-      telNum: config.telNum
-    }
-  },
   computed: {
-    ...mapState(['page'])
+    ...mapState(['page']),
+    ...mapGetters('common', ['footerInfo'])
   },
   methods: {
     openView () {
@@ -93,14 +89,18 @@ export default {
       }
     },
     maillTo () {
-      if (this.$store.state.osType() !== 'AOS') {
-        window.location.href = 'mailto:paycoplusshop@nhnent.com'
-      } else {
-        alert('메일(paycoplusshop@nhnent.com)로 문의해주세요.')
+      if (this.footerInfo) {
+        if (this.$store.state.osType() !== 'AOS') {
+          window.location.href = `mailto:${this.footerInfo.email}`
+        } else {
+          alert(`메일(${this.footerInfo.email})로 문의해주세요.`)
+        }
       }
     },
     call () {
-      window.location.href = `tel:${config.telNum}`
+      if (this.footerInfo) {
+        window.location.href = `tel:${this.footerInfo.phoneNo}`
+      }
     }
   }
 }
