@@ -1,6 +1,7 @@
 import store, { loadNCPSearchScript } from '@/store'
 import { removeClass, hasAccessToken } from '@/utils/utils'
 import cookies from 'js-cookie'
+import queryString from 'query-string'
 
 /* global NCPSearch */
 
@@ -81,6 +82,31 @@ export function checkAppToken (to, from, next) {
       })
     })
   } else { // else -> accesstoken 있는 경우
+    next()
+  }
+}
+
+// 리얼 환경이 아닌 경우 token 쿼리 스트링으로 APP-TOKEN이 들어오는 경우 이걸로 accesstoken
+export function alphaCheckAppToken (to, from, next) {
+  let qs = queryString.parse(window.location.search)
+  let cookiesToken = cookies.get('APP-TOKEN')
+  if (process.env.BUILD_ENV !== 'prod' && qs && Object.keys(qs).includes('token') && cookiesToken === undefined) {
+    let appToken = qs['token']
+    if (appToken !== undefined && !hasAccessToken()) {
+      // cookie에서 APP-TOKEN을 가져옴
+      // 1. login
+      cookies.set('APP-TOKEN', appToken)
+      store.dispatch('authentication/appToken2AccessToken', { appToken: appToken }).then(() => {
+        store.dispatch('profile/memberFetch').then(() => {
+          store.dispatch('authentication/fetchShopAgreement').then(() => {
+            next()
+          })
+        })
+      })
+    } else { // else -> accesstoken 있는 경우
+      next()
+    }
+  } else {
     next()
   }
 }

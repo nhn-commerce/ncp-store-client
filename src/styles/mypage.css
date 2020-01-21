@@ -77,15 +77,76 @@
   float: right;
 }
 
-.mypage_state {
+.mypage_reserve {
   color: rgb(255,255,255);
-  background-color: rgb(100,100,100);
+  background-color: #454851;
+  margin-bottom: 0.75rem;
 }
 
 .mypage_state:after {
   display: block;
   content: '';
   clear: both;
+}
+
+.mypage_reserve.off .reserve_cont {
+  display: none;
+}
+
+.mypage_reserve .reserve_cont {
+  display: flex;
+  justify-content: space-between;
+  padding: 1.4rem 2.7rem 1.6rem 1.4rem;
+  box-sizing: border-box;
+  border-bottom: 0.1rem solid #7b818d;
+  height: 8rem;
+}
+
+.mypage_reserve .reserve_cont dt {
+  font-size: 1.3rem;
+  color: #fff;
+  font-weight: 500;
+}
+
+.mypage_reserve .reserve_cont dd {
+  font-size: 1.8rem;
+  font-weight: bold;
+  font-family: "Helvetica-Bold", Arial, sans-serif;
+}
+
+.mypage_reserve .reserve_cont dd span {
+  font-size: 2.4rem;
+  margin-right: 0.2rem;
+}
+
+.mypage_reserve .reserve_cont .reserve_his {
+  font-size: 1.3rem;
+  color: #c7c8cb;
+  position: relative;
+  height: 2.1rem;
+}
+
+.mypage_reserve .reserve_cont .reserve_his::before,
+.mypage_reserve .reserve_cont .reserve_his::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  right: -1.3rem;
+  width: 0.7rem;
+  height: 0.1rem;
+  background-color: #c7c8cb;
+}
+
+.mypage_reserve .reserve_cont .reserve_his::before {
+  margin-top: -0.3rem;
+  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+.mypage_reserve .reserve_cont .reserve_his::after {
+  margin-top: 0.14rem;
+  -webkit-transform: rotate(-45deg);
+  transform: rotate(-45deg);
 }
 
 .mypage_state > li {
@@ -101,24 +162,39 @@
   box-sizing: border-box;
 }
 
-.mypage_state > li > a {
+.mypage_state>li>a {
   display: block;
-  padding: 0.5rem 0 1.2rem;
+  padding: 0.8rem 0 0.9rem;
+  position: relative;
+}
+
+.mypage_state>li:first-of-type>a::before {
+  display: none;
+}
+
+.mypage_state>li>a::before {
+  content: '';
+  position: absolute;
+  display: block;
+  width: 0.1rem;
+  height: 4rem;
+  top: 1rem;
+  background-color: #7b818d;
 }
 
 .mypage_state > li em {
   display: block;
   font-family: "Helvetica-Bold", Arial, sans-serif;
   font-style: normal;
-  font-size: 3rem;
-  line-height: 3.4rem;
+  font-size: 2.4rem;
+  line-height: 2.9rem;
 }
 
 .mypage_state > li strong {
   display: block;
   font-weight: 300;
   font-size: 1.1rem;
-  line-height: 1;
+  line-height: 1.4rem;
 }
 
 .my_mn_list .title {

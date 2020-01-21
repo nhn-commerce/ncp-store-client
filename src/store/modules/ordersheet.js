@@ -76,7 +76,7 @@ export default {
     couponDeliveryClickType: ''
   },
   actions: {
-    async getSheetNo ({ state, dispatch, commit, rootState, rootGetters }, to) {
+    async getSheetNo({ state, dispatch, commit, rootState, rootGetters }, to) {
       const orderinfo = JSON.parse(window.localStorage.orderinfo)
       const option = decodeURIComponent(orderinfo.option)
       if (option && option.length > 0) {
@@ -137,7 +137,7 @@ export default {
         window.location.replace('/etc/dataerror')
       }
     },
-    async fetchOrder ({ state, dispatch, commit, rootGetters }, orderSheetNo) {
+    async fetchOrder({ state, dispatch, commit, rootGetters }, orderSheetNo) {
       await dispatch('_getOrderSheets', { params: { orderSheetNo } })
 
       state.ordersheet.ordererContact.ordererNameInputFlg = state.ordersheet.ordererContact.ordererName ? 'true' : 'false'
@@ -150,14 +150,14 @@ export default {
         commit('FORMAT_ORDERER_CONTACT')
       }
     },
-    async fetchOrderConpons ({ state, dispatch, commit, rootGetters }, orderSheetNo) {
+    async fetchOrderConpons({ state, dispatch, commit, rootGetters }, orderSheetNo) {
       if (!rootGetters.isLogined) {
         return
       }
       await dispatch('_orderCoupons', { params: { orderSheetNo } })
       commit('CLEAR_REPEAT_COUPON')
     },
-    async calculateConpons ({ state, dispatch, commit, rootGetters }, { orderSheetNo, couponRequest }) {
+    async calculateConpons({ state, dispatch, commit, rootGetters }, { orderSheetNo, couponRequest }) {
       if (!rootGetters.isLogined) {
         return
       }
@@ -172,7 +172,7 @@ export default {
       commit('INIT_COUPONREQUEST', couponRequest)
       commit('SET_COUPON_SELECTED', { commit, couponRequest })
     },
-    async maxCalculateConpons ({ state, dispatch, commit, rootGetters }, { orderSheetNo, couponRequest }) {
+    async maxCalculateConpons({ state, dispatch, commit, rootGetters }, { orderSheetNo, couponRequest }) {
       if (!rootGetters.isLogined) {
         return
       }
@@ -181,7 +181,7 @@ export default {
       commit('INIT_COUPONREQUEST', couponRequest)
       commit('SET_COUPON_SELECTED', { commit, couponRequest })
     },
-    async calculateOrderConpons ({ state, dispatch, commit, rootGetters }, { orderSheetNo, addressRequest }) {
+    async calculateOrderConpons({ state, dispatch, commit, rootGetters }, { orderSheetNo, addressRequest }) {
       if (!addressRequest) {
         addressRequest = state.addressRequest
       }
@@ -189,7 +189,7 @@ export default {
       commit('SET_ADDRESS_REQUEST', addressRequest)
       commit('UPDATE_ORDERSHEET_PAYMENTS')
     },
-    async applyCouponOrder ({ state, dispatch, commit, rootGetters }, { orderSheetNo, couponRequest }) {
+    async applyCouponOrder({ state, dispatch, commit, rootGetters }, { orderSheetNo, couponRequest }) {
       if (!rootGetters.isLogined) {
         return
       }
@@ -206,7 +206,7 @@ export default {
     }
   },
   mutations: {
-    FORMAT_ORDERER_CONTACT (state) {
+    FORMAT_ORDERER_CONTACT(state) {
       if (state.ordersheet.ordererContact) {
         if (state.ordersheet.ordererContact.ordererContact1) {
           const contactNos = telnoFormat(state.ordersheet.ordererContact.ordererContact1)
@@ -228,7 +228,7 @@ export default {
         }
       }
     },
-    SUM_APPLYED_COUPONAMT (state, commit) {
+    SUM_APPLYED_COUPONAMT(state, commit) {
       const paymentInfo = state.ordersheet.paymentInfo
       state.couponAmt = paymentInfo.cartCouponAmt + paymentInfo.deliveryCouponAmt + paymentInfo.productCouponAmt
 
@@ -249,7 +249,7 @@ export default {
         commit('CART_COUPON_USE')
       }
     },
-    CART_COUPON_USE (state) {
+    CART_COUPON_USE(state) {
       if (state.orderCoupons) {
         const otherCouponUsable = state.orderCoupons.cartCoupons && state.orderCoupons.cartCoupons.some(item => item.couponIssueNo === state.couponRequest.cartCouponIssueNo && !item.otherCouponUsable)
         if (otherCouponUsable) {
@@ -266,7 +266,7 @@ export default {
         }
       }
     },
-    SET_COUPON_SELECTED (state, { commit, couponRequest }) {
+    SET_COUPON_SELECTED(state, { commit, couponRequest }) {
       if (state.orderCouponsCalcu) {
         state.orderCoupons = state.orderCouponsCalcu
         let otherUsedable = true
@@ -351,19 +351,19 @@ export default {
         state.orderCoupons.productCouponDiscountAmt = state.orderCouponsCalcu.productCouponDiscountAmt
       }
     },
-    CHANGE_CURRRECENT (state, recent) {
+    CHANGE_CURRRECENT(state, recent) {
       state.currRecent = recent
     },
-    CHANGE_COUPONAMT (state, amt) {
+    CHANGE_COUPONAMT(state, amt) {
       state.couponAmt = amt
     },
-    CHANGE_NEWADDRESS (state, newAddress) {
+    CHANGE_NEWADDRESS(state, newAddress) {
       state.newAddress = newAddress
     },
-    CHANGE_DEVLI_MEMO (state, memo) {
+    CHANGE_DEVLI_MEMO(state, memo) {
       state.deliveryMemo = memo
     },
-    CHANGE_PAYTYPE (state, type) {
+    CHANGE_PAYTYPE(state, type) {
       if (type === 'PAYCO') {
         state.payType = type
         state.pgType = type
@@ -372,10 +372,10 @@ export default {
         state.pgType = 'KCP'
       }
     },
-    CHANGE_COUPONREQUEST (state, couponRequest) {
+    CHANGE_COUPONREQUEST(state, couponRequest) {
       state.couponRequest = couponRequest
     },
-    SET_COUPONREQUEST_COUPONISS (state, { productNo, couponIssueNo, couponRequest }) {
+    SET_COUPONREQUEST_COUPONISS(state, { productNo, couponIssueNo, couponRequest }) {
       if (!couponRequest) {
         couponRequest = state.couponRequest
       }
@@ -401,7 +401,7 @@ export default {
         }
       }
     },
-    SET_COUPONREQUEST_PLUSCOUPONISS (state, { productNo, plusCouponIssueNo, couponRequest }) {
+    SET_COUPONREQUEST_PLUSCOUPONISS(state, { productNo, plusCouponIssueNo, couponRequest }) {
       if (!couponRequest) {
         couponRequest = state.couponRequest
       }
@@ -426,15 +426,15 @@ export default {
         }
       }
     },
-    INIT_ADDRESS_REQUEST (state) {
+    INIT_ADDRESS_REQUEST(state) {
       if (!state.addressRequest.addressRequest && state.ordersheet && state.ordersheet.orderSheetAddress && state.ordersheet.orderSheetAddress.recentAddresses) {
         state.addressRequest['addressRequest'] = state.ordersheet.orderSheetAddress.recentAddresses[0]
       }
     },
-    SET_ADDRESS_REQUEST (state, addressRequest) {
+    SET_ADDRESS_REQUEST(state, addressRequest) {
       state.addressRequest = addressRequest
     },
-    INIT_COUPONREQUEST (state, couponRequest) {
+    INIT_COUPONREQUEST(state, couponRequest) {
       if (!couponRequest) {
         couponRequest = state.couponRequest
       }
@@ -481,17 +481,17 @@ export default {
       //   })
       // }
     },
-    UPDATE_ORDERSHEET_PAYMENTS (state) {
+    UPDATE_ORDERSHEET_PAYMENTS(state) {
       if (state.ordersheet && state.orderCouponsResult) {
         state.ordersheet.paymentInfo = state.orderCouponsResult.paymentInfo
       }
     },
-    UPDATE_ORDERSHEET_PAYMENTS_COUPON (state) {
+    UPDATE_ORDERSHEET_PAYMENTS_COUPON(state) {
       if (state.ordersheet && state.orderCouponsApplyResult) {
         state.ordersheet.paymentInfo = state.orderCouponsApplyResult.paymentInfo
       }
     },
-    CLEAR_REPEAT_COUPON (state) {
+    CLEAR_REPEAT_COUPON(state) {
       // const clear = (coupons) => {
       //   if (coupons && coupons.length > 0) {
       //     const c = []
@@ -557,18 +557,18 @@ export default {
         state.orderCoupons.cartCouponDiscountAmt = 0
       }
     },
-    CHANGE_COUPON_CART_CLICK_TYPE (state, val) {
+    CHANGE_COUPON_CART_CLICK_TYPE(state, val) {
       state.couponCartClickType = val
     },
-    CHANGE_COUPON_DELIVERY_CLICK_TYPE (state, val) {
+    CHANGE_COUPON_DELIVERY_CLICK_TYPE(state, val) {
       state.couponDeliveryClickType = val
     },
-    CHANGE_ACCUMULATION_AMT (state, val) {
+    CHANGE_ACCUMULATION_AMT(state, val) {
       state.accumulationAmt = val
     }
   },
   getters: {
-    orderAvailablePayTypes (state) {
+    orderAvailablePayTypes(state) {
       if (state.ordersheet) {
         return function (payType) {
           const avaiPayTypes = state.ordersheet.availablePayTypes
@@ -581,7 +581,7 @@ export default {
         }
       }
     },
-    orderSelectedPaycoCoupon (state) {
+    orderSelectedPaycoCoupon(state) {
       if (state.orderCoupons) {
         const paycoCoupons = []
         const payType = 'PAYCO'
@@ -609,7 +609,7 @@ export default {
         return { paycoCoupons, amount }
       }
     },
-    orderPaycoCouponCount (state) {
+    orderPaycoCouponCount(state) {
       if (state.orderCoupons) {
         const ret = {}
         let count = 0
@@ -650,7 +650,7 @@ export default {
         return ret
       }
     },
-    orderinfoGetter (state, getters, rootState, rootGetters) {
+    orderinfoGetter(state, getters, rootState, rootGetters) {
       if (state.ordersheet) {
         const ordersheet = state.ordersheet.deliveryGroups
         const optionProduct = []

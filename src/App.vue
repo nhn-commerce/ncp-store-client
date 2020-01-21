@@ -69,6 +69,7 @@ export default {
 @import './styles/category.css';
 @import './styles/main.css';
 @import './styles/custom.css';
+@import './styles/order.css';
 
 #contents {
   padding-top: 5rem;

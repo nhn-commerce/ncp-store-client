@@ -469,6 +469,21 @@ export default [
     ]
   },
   /** my page regist coupon */
+
+  {
+    path: '/mypage/accumulations',
+    name: 'Accumulations',
+    components: {
+      default: asyncComponent('mypage/accumulation/Index'),
+      header: genTitleHeader('적립금'),
+      footer: SiteFooter
+    },
+    meta: {
+      needAuth: true,
+      action: true
+    }
+  },
+  /** my page regist coupon */
   {
     path: '/mypage/registcoupon',
     name: 'RegistCoupon',

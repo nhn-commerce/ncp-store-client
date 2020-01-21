@@ -1,5 +1,6 @@
 import { createNcpApiStore } from '@/api'
 import cookies from 'js-cookie'
+import {getStrYMDHMSS, getStrDate} from '@/utils/dateUtils'
 
 const apiStore = createNcpApiStore([
   {
@@ -43,6 +44,24 @@ const apiStore = createNcpApiStore([
     property: 'profile',
     path: 'profile/payco/sync',
     method: 'put'
+  },
+  {
+    action: '_fetchAccumulations',
+    property: 'accumulations',
+    path: 'profile/accumulations',
+    method: 'get'
+  },
+  {
+    action: '_fetchAccumulationsSummary',
+    property: 'accumulationsSummary',
+    path: 'profile/accumulations/summary',
+    method: 'get'
+  },
+  {
+    action: '_fetchAccumulationsSummary30',
+    property: 'accumulationsSummary30',
+    path: 'profile/accumulations/summary',
+    method: 'get'
   }
 ])
 
@@ -53,6 +72,27 @@ export default {
     async signUp ({ commit, dispatch, rootState }, payload) {
       await dispatch('_signUp', payload)
       location.href = '/SignIn'
+    },
+    async fetchAccumulations ({ commit, dispatch, rootState }, prams) {
+      await dispatch('_fetchAccumulations', { params: prams }).then(ret => {
+        if (ret) {
+          if (ret.data.items.length > 0) {
+            ret.data.items.forEach(item => {
+              item.registerYmdt = getStrDate(item.registerYmdt, '.')
+            })
+          }
+        }
+      })
+    },
+    async fetchAccumulationsSummary ({ commit, dispatch, rootState }) {
+      await dispatch('_fetchAccumulationsSummary')
+    },
+    async fetchAccumulationsSummary30 ({ commit, dispatch, rootState }) {
+      let current = new Date()
+      let date = getStrYMDHMSS(current)
+      let oneDay = 1000 * 24 * 60 * 60
+      let date30 = getStrYMDHMSS(new Date(current.getTime() + oneDay * 30))
+      await dispatch('_fetchAccumulationsSummary30', { params: {expireStartYmdt: date, expireEndYmdt: date30} })
     },
     async memberStatusChange ({ commit, dispatch, state, rootState }, shopAdChecked) {
       if (rootState.memberStatus !== 'ACTIVE') {

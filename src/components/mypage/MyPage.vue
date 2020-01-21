@@ -17,10 +17,10 @@
         <h3 class="title">나의 혜택</h3>
         <ul class="list">
           <li>
-            <router-link to="/mypage/mycoupon">내 쿠폰함</router-link>
+            <router-link to="/mypage/mycoupon">쿠폰</router-link>
           </li>
-          <li>
-            <router-link to="/mypage/registcoupon">쿠폰코드 등록</router-link>
+          <li v-if="accumulationConfig&&(accumulationConfig.useProductAccumulation||accumulationConfig.useMemberAccumulation)">
+            <router-link to="/mypage/accumulations">적립금</router-link>
           </li>
         </ul>
       </div>
@@ -51,7 +51,7 @@
 </template>
 <script>
 import basic from '@/components/mypage/main/Basic'
-
+import { mapGetters } from 'vuex'
 export default {
   metaInfo: {
     title: '마이페이지 메인'
@@ -62,6 +62,7 @@ export default {
     }
   },
   computed: {
+    ...mapGetters('common', ['accumulationConfig'])
   },
   methods: {
   },
@@ -71,5 +72,4 @@ export default {
 }
 </script>
 <style>
-
 </style>

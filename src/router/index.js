@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Meta from 'vue-meta'
 import { scrollBehavior } from './utils'
-import { setTrackingKey, checkAppToken, auth, dispatchAction, resetSearchWordInfo } from './hooks'
+import { setTrackingKey, checkAppToken, auth, dispatchAction, resetSearchWordInfo, alphaCheckAppToken } from './hooks'
 // import { analytics, appLogin, auth, dispatchAction, resetSearchWordInfo, mobilewebCheck } from './hooks'
 import routes from './routes'
 
@@ -18,6 +18,7 @@ const router = new Router({
 router.beforeEach(setTrackingKey)
 // router.beforeEach(mobilewebCheck)
 router.beforeEach(checkAppToken)
+router.beforeEach(alphaCheckAppToken)
 router.beforeEach(auth)
 router.beforeEach(dispatchAction)
 router.afterEach(resetSearchWordInfo)

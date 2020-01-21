@@ -149,6 +149,12 @@ export default {
       if (state.malls) {
         return state.malls.mall.serviceCenter.phoneNo
       }
+    },
+    accumulationConfig (state) {
+      if (state.malls) {
+        return state.malls.accumulationConfig
+      }
+      return null
     }
   },
   mutations: {

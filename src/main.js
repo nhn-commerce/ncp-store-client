@@ -9,6 +9,7 @@ import VueLazyload from 'vue-lazyload'
 import VueClipboard from 'vue-clipboard2'
 import Toasted from 'vue-toasted'
 import iosAlertView from 'vue-ios-alertview'
+import ClickOutside from 'vue-click-outside'
 
 Vue.use(VueLazyload, {
   throttleWait: 50
@@ -23,7 +24,7 @@ Vue.use(iosAlertView)
 Vue.config.productionTip = false
 
 sync(store, router)
-
+Vue.directive('click-outside', ClickOutside)
 function bootstrap () {
   return new Vue({
     el: '#wrap',

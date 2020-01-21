@@ -143,6 +143,7 @@ const actions = {
   )),
   MyPage: genFetchDataAction(({ dispatch }, { to, from }) => (
     Promise.all([
+      dispatch('common/fetchMalls'),
       dispatch('member/memberInformation'),
       dispatch('member/mySummary'),
       dispatch('banners/fetchMyPageBanners')
@@ -325,6 +326,13 @@ const actions = {
   MbrModify: genFetchDataAction(({ dispatch }, { to, from }) => (
     Promise.all([
       dispatch('profile/memberFetch')
+    ])
+  )),
+  Accumulations: genFetchDataAction(({ dispatch }, { to, from }) => (
+    Promise.all([
+      dispatch('profile/fetchAccumulations'),
+      dispatch('profile/fetchAccumulationsSummary'),
+      dispatch('profile/fetchAccumulationsSummary30')
     ])
   ))
 }
