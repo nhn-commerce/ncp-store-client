@@ -9819,7 +9819,7 @@ definitions:
         pattern: '^[a-zA-Z0-9@\._\-]{1,40}$'
       password:
         type: string
-        example: 'nhn!@#123'
+        example: ''
         description: 비밀번호
         pattern: '^[a-zA-Z0-9!@#$%^&+=\-_\.\(\)\\]{8,20}$'
       memberName:
